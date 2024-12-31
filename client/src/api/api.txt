@@ -1,0 +1,1 @@
+Una carpeta para las funciones que van a pedir informacion al backend

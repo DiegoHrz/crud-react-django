@@ -1,9 +1,20 @@
-import './App.css'
-import './index.css'
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import "./index.css";
+import TasksPage from "./pages/TasksPage";
+import TaskFormPage from "./pages/TaskFornPage";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="flex flex-1 text-red-500 ">Hello World</div>
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+      <Route path='/' element={<Navigate to='/tasks' />} />
+        <Route path='/tasks' element={<TasksPage/>} />
+        <Route path='/tasks-create' element={<TaskFormPage/> } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
