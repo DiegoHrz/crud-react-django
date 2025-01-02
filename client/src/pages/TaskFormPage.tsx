@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
-import { createTask, deleteTask } from "../api/tasks.api";
+import { createTask, deleteTask, updateTask, getTask } from "../api/tasks.api";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const TaskFormPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
   //si quisiera validaciones mas complejas podria usar 2 bibliotecas que se unen a react Form:
@@ -17,11 +19,32 @@ const TaskFormPage = () => {
   const params = useParams();
   console.log(params);
 
-  const submit = handleSubmit((data) => {
-    console.log(data);
-    createTask(data);
+  const submit = handleSubmit(async (data) => {
+    if (params.id) {
+      console.log(data);
+      await updateTask(params.id, data);
+    } else {
+      createTask(data);
+    }
     navigate("/tasks");
+
   });
+
+  useEffect(() => {
+    const loadTask = async () => {
+      if (params.id) {
+        // const res = await getTask(params.id);
+        // const {data:title,description} = await getTask(params.id);
+        const { data } = await getTask(params.id);
+        //  setValue('title', title)
+        setValue("title", data.title);
+        setValue("description", data.description);
+      }
+    };
+    loadTask();
+
+    return () => {};
+  }, []);
 
   return (
     <div className="flex flex-1 m-auto">
@@ -53,7 +76,7 @@ const TaskFormPage = () => {
               navigate("/tasks");
             }
           }}
-        >   
+        >
           🗑️
         </button>
       )}

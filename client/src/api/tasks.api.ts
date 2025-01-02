@@ -9,9 +9,13 @@ export const getAllTasks = async () => {
   return response.data;
 };
 
+export const getTask = async (id) => tasksApi.get(`/${id}/`);
+
 export const createTask = async (task) => {
   const response = await tasksApi.post("/", task);
   return response.data;
 };
 
 export const deleteTask = (id) => tasksApi.delete(`/${id}/`);
+
+export const updateTask = (id, task) => tasksApi.put(`/${id}/`, task);
