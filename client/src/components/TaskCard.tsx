@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+
+
 interface TaskProps {
   id: number;
   title: string;
@@ -10,8 +13,11 @@ interface TaskCardProps {
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+
+    const navigate = useNavigate()
+
   return (
-    <div key={task.id} className="text-left" >
+    <div key={task.id} className="text-left" onClick={()=>{navigate(`/tasks/${task.id}`)}} >
       <h1 className="text-base" >{task.title}</h1>
       <p>{task.description}</p>
       <hr/>
