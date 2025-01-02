@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import TasksPage from "./pages/TasksPage";
-import TaskFormPage from "./pages/TaskFornPage";
+import TaskFormPage from "./pages/TaskFormPage";
 import Navbar from "./components/Navbar";
 
 function App() {
