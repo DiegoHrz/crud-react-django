@@ -4,6 +4,7 @@ import "./index.css";
 import TasksPage from "./pages/TasksPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import Navbar from "./components/Navbar";
+import {Toaster} from 'react-hot-toast'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/tasks-create" element={<TaskFormPage />} />
         <Route path="/tasks/:id" element={<TaskFormPage />} />
       </Routes>
+      <Toaster/>
     </BrowserRouter>
   );
 }

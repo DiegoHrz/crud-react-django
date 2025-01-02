@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { createTask, deleteTask, updateTask, getTask } from "../api/tasks.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 const TaskFormPage = () => {
   const {
@@ -25,9 +26,17 @@ const TaskFormPage = () => {
       await updateTask(params.id, data);
     } else {
       createTask(data);
+      toast.success("Tarea Creada", 
+      //   {
+      //   position: "bottom-right",
+      //   style: {
+      //     background: "#101010",
+      //     color: "#fff",
+      //   },
+      // }
+    );
     }
     navigate("/tasks");
-
   });
 
   useEffect(() => {
